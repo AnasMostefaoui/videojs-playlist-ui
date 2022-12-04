@@ -166,7 +166,7 @@ class PlaylistMenuItem extends Component {
 
     nowPlayingEl.className = 'vjs-playlist-now-playing-text';
     nowPlayingEl.appendChild(document.createTextNode(nowPlayingText));
-    nowPlayingEl.setAttribute('title', nowPlayingText);
+    nowPlayingEl.setAttribute('title', 'anas');
     this.thumbnail.appendChild(nowPlayingEl);
 
     // Title container contains title and "up next"
