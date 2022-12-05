@@ -51,26 +51,28 @@ $placeholder-background-color: #303030;
 
   .vjs-playlist-duration-container {
     display: flex;
+
   }
   .vjs-playlist-duration {
-    position: absolute;
-    top: .5rem;
-    left: .5rem;
     padding: 2px 5px 3px;
     margin-left: 2px;
-    background-color: rgba(26, 26, 26, 0.8);
+    color: #595959;
+    font-size: 14px;
+    margin-right: 5px;
   }
 
   .vjs-playlist-name {
     display: block;
     max-height: unset;
     font-size: 12px;
+    color: black;
     // So drop shadow doesn't get cut off as overflow
     padding: 0 0 4px 2px;
     font-style: normal;
     text-overflow: ellipsis;
     overflow: unset;
     white-space: normal;
+    margin-top: 5px;
 
     // line-height: normal was causing overflow cutoff issues on Android, since normal
     // lets different user agents pick a value. Here we set a consistent precise value.
@@ -107,16 +109,7 @@ $placeholder-background-color: #303030;
   // Selected item rules
   .vjs-selected {
     background-color: $highlight-color;
-
-    // img {
-    //   opacity: .2;
-    // }
-
     border-bottom: 3px solid #32A2EF;
-
-    .vjs-playlist-duration {
-      display: none;
-    }
 
     .vjs-playlist-now-playing-text {
       display: block;
@@ -254,12 +247,5 @@ $placeholder-background-color: #303030;
 @media (min-width: 521px) {
   .vjs-playlist img {
     min-height: 85px;
-  }
-}
-
-// Don't show duration when there isn't room
-@media (max-width: 750px) {
-  .vjs-playlist .vjs-playlist-duration {
-    display: none;
   }
 }
