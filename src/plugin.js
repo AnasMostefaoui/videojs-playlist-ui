@@ -480,4 +480,68 @@ registerPlugin('playlistUi', playlistUi);
 
 playlistUi.VERSION = VERSION;
 
+videojs.addLanguage('ar', {
+  'Next playlist item': '\u0639\u0646\u0635\u0631 \u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u062a\u0627\u0644\u064a',
+  'Up next in {1} seconds': '\u0627\u0644\u062a\u0627\u0644\u064a \u062e\u0644\u0627\u0644 {1} \u062b\u0648\u0627\u0646',
+  'Up next': '\u0627\u0644\u062a\u0627\u0644\u064a',
+  'Now Playing': '\u0642\u064a\u062f \u0627\u0644\u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u0622\u0646',
+  'Up Next': '\u0627\u0644\u062a\u0627\u0644\u064a',
+  'Untitled Video': '\u0645\u0642\u0637\u0639 \u0641\u064a\u062f\u064a\u0648 \u0628\u062f\u0648\u0646 \u0639\u0646\u0648\u0627\u0646'
+});
+videojs.addLanguage('de', {
+  'Next playlist item': 'N\xe4chstes Objekt der Wiedergabeliste',
+  'Up next in {1} seconds': 'N\xe4chstes in {1} Sekunden',
+  'Up next': 'Als N\xe4chstes',
+  'Now Playing': 'Aktuelle Wiedergabe',
+  'Up Next': 'Als N\xe4chstes',
+  'Untitled Video': 'Video ohne Titel'
+});
+videojs.addLanguage('es', {
+  'Next playlist item': 'Siguiente t\xedtulo de la lista de reproducci\xf3n',
+  'Up next in {1} seconds': 'Siguiente en {1} segundos',
+  'Up next': 'Siguiente',
+  'Now Playing': 'Reproduciendo',
+  'Up Next': 'Siguiente',
+  'Untitled Video': 'V\xeddeo sin t\xedtulo'
+});
+videojs.addLanguage('fr', {
+  'Next playlist item': 'Prochain \xe9l\xe9ment de la liste de lecture',
+  'Up next in {1} seconds': '\xc0 suivre dans {1} secondes',
+  'Up next': '\xc0 suivre',
+  'Now Playing': 'En cours de lecture',
+  'Up Next': '\xc0 suivre',
+  'Untitled Video': 'Vid\xe9o sans titre'
+});
+videojs.addLanguage('ja', {
+  'Next playlist item': '\u6b21\u306e\u30d7\u30ec\u30a4\u30ea\u30b9\u30c8\u9805\u76ee',
+  'Up next in {1} seconds': '{1} \u79d2\u5f8c\u306b\u6b21\u306e\u52d5\u753b',
+  'Up next': '\u6b21\u306e\u52d5\u753b',
+  'Now Playing': '\u73fe\u5728\u518d\u751f\u4e2d',
+  'Up Next': '\u6b21\u306e\u52d5\u753b',
+  'Untitled Video': '\u7121\u984c\u306e\u52d5\u753b'
+});
+videojs.addLanguage('ko', {
+  'Next playlist item': '\ub2e4\uc74c \uc7ac\uc0dd \ubaa9\ub85d \ud56d\ubaa9',
+  'Up next in {1} seconds': '{1}\ucd08 \ud6c4 \ub2e4\uc74c \uc7ac\uc0dd',
+  'Up next': '\ub2e4\uc74c \uc7ac\uc0dd',
+  'Now Playing': '\uc9c0\uae08 \uc7ac\uc0dd \uc911',
+  'Up Next': '\ub2e4\uc74c \uc7ac\uc0dd',
+  'Untitled Video': '\uc81c\ubaa9 \uc5c6\ub294 \ube44\ub514\uc624'
+});
+videojs.addLanguage('zh-Hans', {
+  'Next playlist item': '\u4e0b\u4e00\u4e2a\u64ad\u653e\u5217\u8868\u9879\u76ee',
+  'Up next in {1} seconds': '{1} \u79d2\u540e\u64ad\u653e\u4e0b\u4e00\u4e2a',
+  'Up next': '\u64ad\u653e\u4e0b\u4e00\u4e2a',
+  'Now Playing': '\u6b63\u5728\u64ad\u653e',
+  'Up Next': '\u64ad\u653e\u4e0b\u4e00\u4e2a',
+  'Untitled Video': '\u65e0\u6807\u9898\u89c6\u9891'
+});
+videojs.addLanguage('zh-Hant', {
+  'Next playlist item': '\u4e0b\u4e00\u500b\u64ad\u653e\u6e05\u55ae\u9805\u76ee',
+  'Up next in {1} seconds': '{1} \u79d2\u5f8c\u64ad\u653e\u4e0b\u4e00\u500b',
+  'Up next': '\u64ad\u653e\u4e0b\u4e00\u500b',
+  'Now Playing': '\u6b63\u5728\u64ad\u653e',
+  'Up Next': '\u64ad\u653e\u4e0b\u4e00\u500b',
+  'Untitled Video': '\u672a\u547d\u540d\u8996\u8a0a'
+});
 export default playlistUi;
