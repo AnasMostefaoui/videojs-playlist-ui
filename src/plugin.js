@@ -91,6 +91,13 @@ const createThumbnail = function(thumbnail) {
 };
 
 const Component = videojs.getComponent('Component');
+const Button = videojs.getComponent('Button');
+
+// class NextButton extends Button {
+//   constructor() {
+
+//   }
+// }
 
 class PlaylistMenuItem extends Component {
 
@@ -462,45 +469,7 @@ const playlistUi = function(options) {
 // register components
 videojs.registerComponent('PlaylistMenu', PlaylistMenu);
 videojs.registerComponent('PlaylistMenuItem', PlaylistMenuItem);
-
-function s(e, t) {
-  e.prototype = Object.create(t.prototype);
-  e.prototype.constructor = e;
-  e.__proto__ = t
-}
-var o = s;
-var H = videojs.getComponent("Button");
-var z = function(e) {
-    o(t, e);
-    function t(t, i) {
-        var r;
-        r = e.call(this, t, i) || this;
-        r.controlText(r.localize("Next playlist item"));
-        r.on(t, ["adstart"], r.disable);
-        r.on(t, ["adend", "adtimeout"], r.enable);
-        return r
-    }
-    var i = t.prototype;
-    i.buildCSSClass = function t() {
-        return "vjs-next-button " + e.prototype.buildCSSClass.call(this)
-    }
-    ;
-    i.createEl = function t() {
-        return e.prototype.createEl.call(this, "button", {
-            innerHTML: '<span class="vjs-icon-placeholder" aria-hidden="true"></span>'
-        })
-    }
-    ;
-    i.handleClick = function e(t) {
-        this.player_.playlist.next();
-        if (this.options_.playOnSelect) {
-            this.player_.play()
-        }
-    }
-    ;
-    return t
-}(H);
-videojs.registerComponent("NextButton", z);
+// videojs.registerComponent("NextButton", NextButton);
 
 // register the plugin
 registerPlugin('playlistUi', playlistUi);

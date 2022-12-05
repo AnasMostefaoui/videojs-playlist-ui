@@ -97,6 +97,10 @@
   };
 
   const Component = videojs__default["default"].getComponent('Component');
+  videojs__default["default"].getComponent('Button'); // class NextButton extends Button {
+  //   constructor() {
+  //   }
+  // }
 
   class PlaylistMenuItem extends Component {
     constructor(player, playlistItem, settings) {
@@ -451,45 +455,8 @@
 
 
   videojs__default["default"].registerComponent('PlaylistMenu', PlaylistMenu);
-  videojs__default["default"].registerComponent('PlaylistMenuItem', PlaylistMenuItem);
-  var H = videojs__default["default"].getComponent("Button");
-
-  var z = function (e) {
-    o(t, e);
-
-    function t(t, i) {
-      var r;
-      r = e.call(this, t, i) || this;
-      r.controlText(r.localize("Next playlist item"));
-      r.on(t, ["adstart"], r.disable);
-      r.on(t, ["adend", "adtimeout"], r.enable);
-      return r;
-    }
-
-    var i = t.prototype;
-
-    i.buildCSSClass = function t() {
-      return "vjs-next-button " + e.prototype.buildCSSClass.call(this);
-    };
-
-    i.createEl = function t() {
-      return e.prototype.createEl.call(this, "button", {
-        innerHTML: '<span class="vjs-icon-placeholder" aria-hidden="true"></span>'
-      });
-    };
-
-    i.handleClick = function e(t) {
-      this.player_.playlist.next();
-
-      if (this.options_.playOnSelect) {
-        this.player_.play();
-      }
-    };
-
-    return t;
-  }(H);
-
-  videojs__default["default"].registerComponent("NextButton", z); // register the plugin
+  videojs__default["default"].registerComponent('PlaylistMenuItem', PlaylistMenuItem); // videojs.registerComponent("NextButton", NextButton);
+  // register the plugin
 
   registerPlugin('playlistUi', playlistUi);
   playlistUi.VERSION = version;
