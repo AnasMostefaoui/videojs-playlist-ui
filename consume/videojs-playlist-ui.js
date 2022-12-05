@@ -132,7 +132,7 @@
     createEl() {
       const li = document.createElement('li');
       const item = this.options_.item;
-      const showDescription = this.options_.showDescription;
+      this.options_.showDescription;
 
       if (typeof item.data === 'object') {
         const dataKeys = Object.keys(item.data);
@@ -149,12 +149,16 @@
       li.appendChild(this.thumbnail); // Duration
 
       if (item.duration) {
+        const durationContainer = document.createElement('div');
+        durationContainer.className = 'vjs-playlist-duration-container';
+        durationContainer.innerHTML = '<svg class="icon icon--play icon--primary icon--32 gc__meta__icon" viewBox="0 0 20 20" version="1.1" aria-hidden="true"><title>play</title><path class="icon-main-color" d="M0 10a10 10 0 1 1 10 10A10 10 0 0 1 0 10zm7.92 4.27a.48.48 0 0 0 .23-.07L14 10.35a.42.42 0 0 0 0-.7L8.15 5.8a.42.42 0 0 0-.43 0 .4.4 0 0 0-.22.36v7.7a.4.4 0 0 0 .22.36.36.36 0 0 0 .2.05z"></path></svg>';
         const duration = document.createElement('time');
         const time = videojs__default["default"].formatTime(item.duration);
         duration.className = 'vjs-playlist-duration';
         duration.setAttribute('datetime', 'PT0H0M' + item.duration + 'S');
         duration.appendChild(document.createTextNode(time));
-        li.appendChild(duration);
+        durationContainer.appendChild(duration);
+        li.appendChild(durationContainer);
       } // Now playing
 
 
@@ -177,17 +181,7 @@
       titleEl.className = 'vjs-playlist-name';
       titleEl.appendChild(document.createTextNode(titleText));
       titleEl.setAttribute('title', titleText);
-      li.appendChild(titleEl); // We add thumbnail video description only if specified in playlist options
-
-      if (showDescription) {
-        const descriptionEl = document.createElement('div');
-        const descriptionText = item.description || '';
-        descriptionEl.className = 'vjs-playlist-description';
-        descriptionEl.appendChild(document.createTextNode(descriptionText));
-        descriptionEl.setAttribute('title', descriptionText);
-        titleContainerEl.appendChild(descriptionEl);
-      }
-
+      li.appendChild(titleEl);
       return li;
     }
 
@@ -465,7 +459,7 @@
     'Next playlist item': '\u0639\u0646\u0635\u0631 \u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u062a\u0627\u0644\u064a',
     'Up next in {1} seconds': '\u0627\u0644\u062a\u0627\u0644\u064a \u062e\u0644\u0627\u0644 {1} \u062b\u0648\u0627\u0646',
     'Up next': '\u0627\u0644\u062a\u0627\u0644\u064a',
-    'Now Playing': '\u0642\u064a\u062f \u0627\u0644\u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u0622\u0646',
+    'Now Playing': 'يعرض الآن',
     'Up Next': '\u0627\u0644\u062a\u0627\u0644\u064a',
     'Untitled Video': '\u0645\u0642\u0637\u0639 \u0641\u064a\u062f\u064a\u0648 \u0628\u062f\u0648\u0646 \u0639\u0646\u0648\u0627\u0646'
   });

@@ -2,7 +2,7 @@
 $background-color: #1a1a1a;
 
 // The color used to emphasize the currently playing video and for effects
-$highlight-color: #141a21;
+$highlight-color: #E5E5E5;
 
 // The primary foreground color
 $main-color: #fff;
@@ -32,6 +32,8 @@ $placeholder-background-color: #303030;
     position: relative;
     cursor: pointer;
     overflow: hidden;
+    min-height: 194px;
+    padding: 10px;
   }
 
   .vjs-playlist-thumbnail-placeholder {
@@ -41,14 +43,15 @@ $placeholder-background-color: #303030;
   .vjs-playlist-now-playing-text {
     display: none;
     position: absolute;
-    top: 0;
-    left: 0;
-
-    // This keeps this element aligned vertically with vjs-playlist-name.
-    padding-left: 2px;
-    margin: .8rem;
+    top: 10px;
+    right: 10px;
+    font-size: 13px;
+    background-color: black;
   }
 
+  .vjs-playlist-duration-container {
+    display: flex;
+  }
   .vjs-playlist-duration {
     position: absolute;
     top: .5rem;
@@ -58,29 +61,17 @@ $placeholder-background-color: #303030;
     background-color: rgba(26, 26, 26, 0.8);
   }
 
-  .vjs-playlist-title-container {
-    position: absolute;
-    bottom: 0;
-    box-sizing: border-box;
-    width: 100%;
-    padding: .5rem .8rem;
-    text-shadow:  1px  1px 2px black,
-                 -1px  1px 2px black,
-                  1px -1px 2px black,
-                 -1px -1px 2px black;
-  }
-
   .vjs-playlist-name {
     display: block;
-    max-height: 2.5em;
-
+    max-height: unset;
+    font-size: 12px;
     // So drop shadow doesn't get cut off as overflow
     padding: 0 0 4px 2px;
     font-style: normal;
     text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    
+    overflow: unset;
+    white-space: normal;
+
     // line-height: normal was causing overflow cutoff issues on Android, since normal
     // lets different user agents pick a value. Here we set a consistent precise value.
     line-height: 20px;
@@ -97,9 +88,13 @@ $placeholder-background-color: #303030;
 
   .vjs-up-next-text {
     display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     padding: .1rem 2px;
-    font-size: .8em;
+    font-size: 13px;
     text-transform: uppercase;
+    background-color: black;
   }
 
   .vjs-up-next {
@@ -113,9 +108,11 @@ $placeholder-background-color: #303030;
   .vjs-selected {
     background-color: $highlight-color;
 
-    img {
-      opacity: .2;
-    }
+    // img {
+    //   opacity: .2;
+    // }
+
+    border-bottom: 3px solid #32A2EF;
 
     .vjs-playlist-duration {
       display: none;
@@ -166,14 +163,13 @@ $placeholder-background-color: #303030;
   }
 
   .vjs-playlist-item-list {
+    display: flex;
     height: 100%;
-    white-space: nowrap;
   }
 
   .vjs-playlist-item {
     display: inline-block;
     height: 100%;
-    margin-right: 5px;
   }
 
   .vjs-playlist-thumbnail {
