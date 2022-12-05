@@ -163,18 +163,14 @@
       nowPlayingEl.className = 'vjs-playlist-now-playing-text';
       nowPlayingEl.appendChild(document.createTextNode(nowPlayingText));
       nowPlayingEl.setAttribute('title', nowPlayingText);
-      this.thumbnail.appendChild(nowPlayingEl); // Title container contains title and "up next"
-
-      const titleContainerEl = document.createElement('div');
-      titleContainerEl.className = 'vjs-playlist-title-container';
-      this.thumbnail.appendChild(titleContainerEl); // Up next
+      this.thumbnail.appendChild(nowPlayingEl); // Up next
 
       const upNextEl = document.createElement('span');
       const upNextText = this.localize('Up Next');
       upNextEl.className = 'vjs-up-next-text';
       upNextEl.appendChild(document.createTextNode(upNextText));
       upNextEl.setAttribute('title', upNextText);
-      titleContainerEl.appendChild(upNextEl); // Video title
+      this.thumbnail.appendChild(upNextEl); // Video title
 
       const titleEl = document.createElement('cite');
       const titleText = item.name || this.localize('Untitled Video');
