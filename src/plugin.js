@@ -166,7 +166,7 @@ class PlaylistMenuItem extends Component {
 
     nowPlayingEl.className = 'vjs-playlist-now-playing-text';
     nowPlayingEl.appendChild(document.createTextNode(nowPlayingText));
-    nowPlayingEl.setAttribute('title', 'anas');
+    nowPlayingEl.setAttribute('title', nowPlayingText);
     this.thumbnail.appendChild(nowPlayingEl);
 
     // Title container contains title and "up next"
@@ -191,8 +191,7 @@ class PlaylistMenuItem extends Component {
     titleEl.className = 'vjs-playlist-name';
     titleEl.appendChild(document.createTextNode(titleText));
     titleEl.setAttribute('title', titleText);
-    titleContainerEl.appendChild(titleEl);
-
+    li.appendChild(titleEl);
     // We add thumbnail video description only if specified in playlist options
     if (showDescription) {
       const descriptionEl = document.createElement('div');

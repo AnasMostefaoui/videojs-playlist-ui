@@ -1,25 +1,21 @@
-/* ! @name videojs-playlist-ui @version 4.1.0 @license Apache-2.0 */
-(function(global, factory) {
+/*! @name videojs-playlist-ui @version 4.1.0 @license Apache-2.0 */
+(function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('video.js')) :
-    typeof define === 'function' && define.amd ? define(['video.js'], factory) :
-      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.videojsPlaylistUi = factory(global.videojs));
-})(this, (function(videojs) {
-  'use strict';
+  typeof define === 'function' && define.amd ? define(['video.js'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.videojsPlaylistUi = factory(global.videojs));
+})(this, (function (videojs) { 'use strict';
 
-  function _interopDefaultLegacy(e) {
-    return e && typeof e === 'object' && 'default' in e ? e : { default: e };
-  }
+  function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-  const videojs__default = /* #__PURE__*/_interopDefaultLegacy(videojs);
+  var videojs__default = /*#__PURE__*/_interopDefaultLegacy(videojs);
 
-  const version = '4.1.0';
+  var version = "4.1.0";
 
-  const dom = videojs__default.default.dom || videojs__default.default;
-  const registerPlugin = videojs__default.default.registerPlugin || videojs__default.default.plugin; // see https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/pointerevents.js
+  const dom = videojs__default["default"].dom || videojs__default["default"];
+  const registerPlugin = videojs__default["default"].registerPlugin || videojs__default["default"].plugin; // see https://github.com/Modernizr/Modernizr/blob/master/feature-detects/css/pointerevents.js
 
   const supportsCssPointerEvents = (() => {
     const element = document.createElement('x');
-
     element.style.cssText = 'pointer-events:auto';
     return element.style.pointerEvents === 'auto';
   })();
@@ -32,11 +28,11 @@
   // so it won't conflict with `vjs-icon-play
   // since it'll get added when we mouse out
 
-  const addSelectedClass = function(el) {
+  const addSelectedClass = function (el) {
     el.addClass('vjs-selected');
   };
 
-  const removeSelectedClass = function(el) {
+  const removeSelectedClass = function (el) {
     el.removeClass('vjs-selected');
 
     if (el.thumbnail) {
@@ -44,30 +40,27 @@
     }
   };
 
-  const upNext = function(el) {
+  const upNext = function (el) {
     el.addClass('vjs-up-next');
   };
 
-  const notUpNext = function(el) {
+  const notUpNext = function (el) {
     el.removeClass('vjs-up-next');
   };
 
-  const createThumbnail = function(thumbnail) {
+  const createThumbnail = function (thumbnail) {
     if (!thumbnail) {
       const placeholder = document.createElement('div');
-
       placeholder.className = 'vjs-playlist-thumbnail vjs-playlist-thumbnail-placeholder';
       return placeholder;
     }
 
     const picture = document.createElement('picture');
-
     picture.className = 'vjs-playlist-thumbnail';
 
     if (typeof thumbnail === 'string') {
       // simple thumbnails
       const img = document.createElement('img');
-
       img.loading = 'lazy';
       img.src = thumbnail;
       img.alt = '';
@@ -87,9 +80,9 @@
         picture.appendChild(source);
       } // the default version of a <picture> is specified by an <img>
 
+
       const variant = thumbnail[thumbnail.length - 1];
       const img = document.createElement('img');
-
       img.loading = 'lazy';
       img.alt = '';
 
@@ -103,7 +96,7 @@
     return picture;
   };
 
-  const Component = videojs__default.default.getComponent('Component');
+  const Component = videojs__default["default"].getComponent('Component');
 
   class PlaylistMenuItem extends Component {
     constructor(player, playlistItem, settings) {
@@ -143,10 +136,8 @@
 
       if (typeof item.data === 'object') {
         const dataKeys = Object.keys(item.data);
-
         dataKeys.forEach(key => {
           const value = item.data[key];
-
           li.dataset[key] = value;
         });
       }
@@ -159,30 +150,27 @@
 
       if (item.duration) {
         const duration = document.createElement('time');
-        const time = videojs__default.default.formatTime(item.duration);
-
+        const time = videojs__default["default"].formatTime(item.duration);
         duration.className = 'vjs-playlist-duration';
         duration.setAttribute('datetime', 'PT0H0M' + item.duration + 'S');
         duration.appendChild(document.createTextNode(time));
         li.appendChild(duration);
       } // Now playing
 
+
       const nowPlayingEl = document.createElement('span');
       const nowPlayingText = this.localize('Now Playing');
-
       nowPlayingEl.className = 'vjs-playlist-now-playing-text';
       nowPlayingEl.appendChild(document.createTextNode(nowPlayingText));
-      nowPlayingEl.setAttribute('title', 'anas');
+      nowPlayingEl.setAttribute('title', nowPlayingText);
       this.thumbnail.appendChild(nowPlayingEl); // Title container contains title and "up next"
 
       const titleContainerEl = document.createElement('div');
-
       titleContainerEl.className = 'vjs-playlist-title-container';
       this.thumbnail.appendChild(titleContainerEl); // Up next
 
       const upNextEl = document.createElement('span');
       const upNextText = this.localize('Up Next');
-
       upNextEl.className = 'vjs-up-next-text';
       upNextEl.appendChild(document.createTextNode(upNextText));
       upNextEl.setAttribute('title', upNextText);
@@ -190,16 +178,14 @@
 
       const titleEl = document.createElement('cite');
       const titleText = item.name || this.localize('Untitled Video');
-
       titleEl.className = 'vjs-playlist-name';
       titleEl.appendChild(document.createTextNode(titleText));
       titleEl.setAttribute('title', titleText);
-      titleContainerEl.appendChild(titleEl); // We add thumbnail video description only if specified in playlist options
+      li.appendChild(titleEl); // We add thumbnail video description only if specified in playlist options
 
       if (showDescription) {
         const descriptionEl = document.createElement('div');
         const descriptionText = item.description || '';
-
         descriptionEl.className = 'vjs-playlist-description';
         descriptionEl.appendChild(document.createTextNode(descriptionText));
         descriptionEl.setAttribute('title', descriptionText);
@@ -228,13 +214,14 @@
       // clicking on playlist items during ads with slightly more
       // invasive techniques. Details in the stylesheet.
 
+
       if (options.supportsCssPointerEvents) {
         this.addClass('vjs-csspointerevents');
       }
 
       this.createPlaylist_();
 
-      if (!videojs__default.default.browser.TOUCH_ENABLED) {
+      if (!videojs__default["default"].browser.TOUCH_ENABLED) {
         this.addClass('vjs-mouse');
       }
 
@@ -288,11 +275,11 @@
         const item = new PlaylistMenuItem(this.player_, {
           item: playlist[i]
         }, this.options_);
-
         this.items.push(item);
         list.appendChild(item.el_);
       } // Inject the ad overlay. We use this element to block clicks during ad
       // playback and darken the menu to indicate inactivity
+
 
       if (!overlay) {
         overlay = document.createElement('li');
@@ -302,6 +289,7 @@
         // Move overlay to end of list
         list.appendChild(overlay);
       } // select the current playlist item
+
 
       const selectedIndex = this.player_.playlist.currentItem();
 
@@ -334,6 +322,7 @@
           return;
         }
       } // the playlist itself is unchanged so just update the selection
+
 
       const currentItem = this.player_.playlist.currentItem();
 
@@ -371,6 +360,7 @@
    *         Whether the element has child elements.
    */
 
+
   const hasChildEls = el => {
     for (let i = 0; i < el.childNodes.length; i++) {
       if (dom.isEl(el.childNodes[i])) {
@@ -389,6 +379,7 @@
    * @return {HTMLElement}
    *         A DOM element to use as the root for a playlist.
    */
+
 
   const findRoot = className => {
     const all = document.querySelectorAll('.' + className);
@@ -420,7 +411,8 @@
    *         playlist item in the UI.
    */
 
-  const playlistUi = function(options) {
+
+  const playlistUi = function (options) {
     const player = this;
 
     if (!player.playlist) {
@@ -428,13 +420,13 @@
     }
 
     if (dom.isEl(options)) {
-      videojs__default.default.log.warn('videojs-playlist-ui: Passing an element directly to playlistUi() is deprecated, use the "el" option instead!');
+      videojs__default["default"].log.warn('videojs-playlist-ui: Passing an element directly to playlistUi() is deprecated, use the "el" option instead!');
       options = {
         el: options
       };
     }
 
-    options = videojs__default.default.mergeOptions(defaults, options); // If the player is already using this plugin, remove the pre-existing
+    options = videojs__default["default"].mergeOptions(defaults, options); // If the player is already using this plugin, remove the pre-existing
     // PlaylistMenu, but retain the element and its location in the DOM because
     // it will be re-used.
 
@@ -467,12 +459,13 @@
     player.playlistMenu = new PlaylistMenu(player, options);
   }; // register components
 
-  videojs__default.default.registerComponent('PlaylistMenu', PlaylistMenu);
-  videojs__default.default.registerComponent('PlaylistMenuItem', PlaylistMenuItem); // register the plugin
+
+  videojs__default["default"].registerComponent('PlaylistMenu', PlaylistMenu);
+  videojs__default["default"].registerComponent('PlaylistMenuItem', PlaylistMenuItem); // register the plugin
 
   registerPlugin('playlistUi', playlistUi);
   playlistUi.VERSION = version;
-  videojs__default.default.addLanguage('ar', {
+  videojs__default["default"].addLanguage('ar', {
     'Next playlist item': '\u0639\u0646\u0635\u0631 \u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u062a\u0627\u0644\u064a',
     'Up next in {1} seconds': '\u0627\u0644\u062a\u0627\u0644\u064a \u062e\u0644\u0627\u0644 {1} \u062b\u0648\u0627\u0646',
     'Up next': '\u0627\u0644\u062a\u0627\u0644\u064a',
@@ -480,7 +473,7 @@
     'Up Next': '\u0627\u0644\u062a\u0627\u0644\u064a',
     'Untitled Video': '\u0645\u0642\u0637\u0639 \u0641\u064a\u062f\u064a\u0648 \u0628\u062f\u0648\u0646 \u0639\u0646\u0648\u0627\u0646'
   });
-  videojs__default.default.addLanguage('de', {
+  videojs__default["default"].addLanguage('de', {
     'Next playlist item': 'N\xe4chstes Objekt der Wiedergabeliste',
     'Up next in {1} seconds': 'N\xe4chstes in {1} Sekunden',
     'Up next': 'Als N\xe4chstes',
@@ -488,7 +481,7 @@
     'Up Next': 'Als N\xe4chstes',
     'Untitled Video': 'Video ohne Titel'
   });
-  videojs__default.default.addLanguage('es', {
+  videojs__default["default"].addLanguage('es', {
     'Next playlist item': 'Siguiente t\xedtulo de la lista de reproducci\xf3n',
     'Up next in {1} seconds': 'Siguiente en {1} segundos',
     'Up next': 'Siguiente',
@@ -496,7 +489,7 @@
     'Up Next': 'Siguiente',
     'Untitled Video': 'V\xeddeo sin t\xedtulo'
   });
-  videojs__default.default.addLanguage('fr', {
+  videojs__default["default"].addLanguage('fr', {
     'Next playlist item': 'Prochain \xe9l\xe9ment de la liste de lecture',
     'Up next in {1} seconds': '\xc0 suivre dans {1} secondes',
     'Up next': '\xc0 suivre',
@@ -504,7 +497,7 @@
     'Up Next': '\xc0 suivre',
     'Untitled Video': 'Vid\xe9o sans titre'
   });
-  videojs__default.default.addLanguage('ja', {
+  videojs__default["default"].addLanguage('ja', {
     'Next playlist item': '\u6b21\u306e\u30d7\u30ec\u30a4\u30ea\u30b9\u30c8\u9805\u76ee',
     'Up next in {1} seconds': '{1} \u79d2\u5f8c\u306b\u6b21\u306e\u52d5\u753b',
     'Up next': '\u6b21\u306e\u52d5\u753b',
@@ -512,7 +505,7 @@
     'Up Next': '\u6b21\u306e\u52d5\u753b',
     'Untitled Video': '\u7121\u984c\u306e\u52d5\u753b'
   });
-  videojs__default.default.addLanguage('ko', {
+  videojs__default["default"].addLanguage('ko', {
     'Next playlist item': '\ub2e4\uc74c \uc7ac\uc0dd \ubaa9\ub85d \ud56d\ubaa9',
     'Up next in {1} seconds': '{1}\ucd08 \ud6c4 \ub2e4\uc74c \uc7ac\uc0dd',
     'Up next': '\ub2e4\uc74c \uc7ac\uc0dd',
@@ -520,7 +513,7 @@
     'Up Next': '\ub2e4\uc74c \uc7ac\uc0dd',
     'Untitled Video': '\uc81c\ubaa9 \uc5c6\ub294 \ube44\ub514\uc624'
   });
-  videojs__default.default.addLanguage('zh-Hans', {
+  videojs__default["default"].addLanguage('zh-Hans', {
     'Next playlist item': '\u4e0b\u4e00\u4e2a\u64ad\u653e\u5217\u8868\u9879\u76ee',
     'Up next in {1} seconds': '{1} \u79d2\u540e\u64ad\u653e\u4e0b\u4e00\u4e2a',
     'Up next': '\u64ad\u653e\u4e0b\u4e00\u4e2a',
@@ -528,7 +521,7 @@
     'Up Next': '\u64ad\u653e\u4e0b\u4e00\u4e2a',
     'Untitled Video': '\u65e0\u6807\u9898\u89c6\u9891'
   });
-  videojs__default.default.addLanguage('zh-Hant', {
+  videojs__default["default"].addLanguage('zh-Hant', {
     'Next playlist item': '\u4e0b\u4e00\u500b\u64ad\u653e\u6e05\u55ae\u9805\u76ee',
     'Up next in {1} seconds': '{1} \u79d2\u5f8c\u64ad\u653e\u4e0b\u4e00\u500b',
     'Up next': '\u64ad\u653e\u4e0b\u4e00\u500b',
